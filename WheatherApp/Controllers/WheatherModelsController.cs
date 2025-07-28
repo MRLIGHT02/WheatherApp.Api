@@ -22,12 +22,13 @@ namespace WheatherApp.Controllers
         }
 
         [Route("/")]
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var data = await _context.GetAllAsync();
 
 
-            return View(data);
+            return Ok(data);
         }
 
     }
