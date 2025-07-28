@@ -1,0 +1,22 @@
+﻿@using Wheather.Service
+@using Wheather.ServiceContract
+
+@model List<Wheather.Models.WheatherModel>
+
+@{
+    ViewData["Title"] = "Weather Models";
+}
+
+
+<ul class="list">
+
+    @foreach (var item in Model)
+    {
+        <div class="box">
+
+        <li>@item.CityUniqueCode</li>
+        <li>@item.CityName</li>
+        <li>@item.TemperatureFahrenheit</li>
+        </div>
+    }
+</ul>
