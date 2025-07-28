@@ -16,12 +16,13 @@ namespace WheatherApp.Controllers
     public class WheatherModelsController : Controller
     {
         public readonly IWheatherContract _context;
+
         public WheatherModelsController(IWheatherContract context)
         {
             _context = context;
         }
 
-        [Route("/")]
+        [Route("Wheater")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -29,6 +30,17 @@ namespace WheatherApp.Controllers
 
 
             return Ok(data);
+        }
+
+        [Route("Wheater/{countryCode}")]
+        public async Task<IActionResult> GetCountryWheater(string countryCode)
+        {
+            if (string.IsNullOrEmpty(countryCode))
+            {
+                return BadRequest("Country code cannot be null or empty.");
+            }
+            var citywheather = await _context.GetWheatherByCountryCode(countryCode.ToUpper());
+            return Ok(citywheather);
         }
 
     }

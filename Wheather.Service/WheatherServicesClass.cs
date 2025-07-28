@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 using Wheather.Data;
 using Wheather.Models;
 using Wheather.ServiceContract;
@@ -20,6 +21,14 @@ namespace Wheather.Service
             return result;
         }
 
+        public Task<WheatherModel> GetWheatherByCountryCode(string countryCode)
+        {
+            var result = _context.WheatherModels
+                .FirstOrDefaultAsync(x => x.CityUniqueCode == countryCode);
+            return result;
+
+
+        }
 
     }
 }
